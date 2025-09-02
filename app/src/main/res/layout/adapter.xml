@@ -1,0 +1,27 @@
+<!-- item_selected_image.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvFileName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="filename.jpg"
+        android:textSize="14sp"
+        android:textColor="#374151" />
+
+    <ImageView
+        android:id="@+id/btnRemove"
+        android:layout_width="10dp"
+        android:layout_height="16dp"
+        android:src="@drawable/cam"
+        android:contentDescription="Remove"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="2dp"/>
+</LinearLayout>

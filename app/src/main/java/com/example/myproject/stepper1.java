@@ -1,9 +1,12 @@
 package com.example.myproject;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -12,77 +15,107 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class stepper1 extends AppCompatActivity {
 
-    private LinearLayout uploadBox;
-    private Button btnContinue;
-    private List<Uri> selectedImages = new ArrayList<>();
+    private static final int MAX_IMAGES = 12;
 
-    // Activity Result API for selecting multiple images
-    private ActivityResultLauncher<String> pickImagesLauncher;
+    private GridLayout selectedImagesGrid;
+    private Button btnContinue;
+    private final ArrayList<Uri> imageUris = new ArrayList<>();
+
+    private ActivityResultLauncher<Intent> pickImagesLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stepper1);
 
-        // Initialize views
-        uploadBox = findViewById(R.id.upload_container);
+        LinearLayout uploadContainer = findViewById(R.id.upload_container);
+        selectedImagesGrid = findViewById(R.id.selected_images_grid);
         btnContinue = findViewById(R.id.btnContinue);
 
-        // Initialize launcher (MULTIPLE image picker)
+        // Picker
         pickImagesLauncher = registerForActivityResult(
-                new ActivityResultContracts.GetMultipleContents(),
-                uris -> {
-                    if (uris != null && !uris.isEmpty()) {
-                        for (Uri uri : uris) {
-                            if (selectedImages.size() >= 8) {
-                                Toast.makeText(this, "Maximum 8 images allowed", Toast.LENGTH_SHORT).show();
-                                break;
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        ClipData clipData = result.getData().getClipData();
+                        Uri singleImage = result.getData().getData();
+
+                        int added = 0;
+                        if (clipData != null) {
+                            int count = clipData.getItemCount();
+                            for (int i = 0; i < count; i++) {
+                                if (imageUris.size() >= MAX_IMAGES) break;
+                                Uri uri = clipData.getItemAt(i).getUri();
+                                imageUris.add(uri);
+                                added++;
                             }
-                            selectedImages.add(uri);
+                        } else if (singleImage != null && imageUris.size() < MAX_IMAGES) {
+                            imageUris.add(singleImage);
+                            added++;
                         }
-                        updateUploadBoxState();
-                        Toast.makeText(this,
-                                selectedImages.size() + " image(s) selected",
-                                Toast.LENGTH_SHORT).show();
+
+                        if (added == 0 && imageUris.size() >= MAX_IMAGES) {
+                            Toast.makeText(this, "Maximum 12 images allowed", Toast.LENGTH_SHORT).show();
+                        }
+
+                        displaySelectedImages();
+                        updateContinueState();
                     }
-                }
-        );
+                });
 
-        // Upload image click
-        uploadBox.setOnClickListener(v -> pickImagesLauncher.launch("image/*"));
+        uploadContainer.setOnClickListener(v -> openImagePicker());
 
-        // Continue button
         btnContinue.setOnClickListener(v -> {
-            if (selectedImages.isEmpty()) {
+            if (imageUris.isEmpty()) {
                 Toast.makeText(this, "Please upload at least 1 image", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Save selected images and proceed to next step
-            proceedToNextStep();
+            // Navigate to stepper2 with the image URIs
+            Intent intent = new Intent(this, stepper2.class);
+            ArrayList<String> asStrings = new ArrayList<>();
+            for (Uri u : imageUris) asStrings.add(u.toString());
+            intent.putStringArrayListExtra("images", asStrings);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
         });
 
-        // Initial button state
-        updateUploadBoxState();
+        updateContinueState();
     }
 
-    private void updateUploadBoxState() {
-        // Enable continue button if at least one image is selected
-        btnContinue.setEnabled(!selectedImages.isEmpty());
-        btnContinue.setAlpha(selectedImages.isEmpty() ? 0.5f : 1.0f);
+    private void openImagePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        pickImagesLauncher.launch(intent);
     }
 
-    private void proceedToNextStep() {
-        Intent intent = new Intent(this, stepper2.class);  // Changed from stepper3 to stepper2
-        // Add selected images to intent
-        ArrayList<String> imageUris = new ArrayList<>();
-        for (Uri uri : selectedImages) {
-            imageUris.add(uri.toString());
+    private void displaySelectedImages() {
+        selectedImagesGrid.removeAllViews();
+
+        int screenW = getResources().getDisplayMetrics().widthPixels;
+        int col = 3;
+        int marginPx = (int) (8 * getResources().getDisplayMetrics().density);
+        int itemW = screenW / col - (marginPx * 2);
+
+        for (Uri uri : imageUris) {
+            ImageView iv = new ImageView(this);
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.width = itemW;
+            params.height = itemW;           // square thumbnails
+            params.setMargins(marginPx, marginPx, marginPx, marginPx);
+            iv.setLayoutParams(params);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            iv.setImageURI(uri);
+            selectedImagesGrid.addView(iv);
         }
-        intent.putStringArrayListExtra("selected_images", imageUris);
-        startActivity(intent);
+    }
+
+    private void updateContinueState() {
+        boolean enabled = !imageUris.isEmpty();
+        btnContinue.setEnabled(enabled);
+        btnContinue.setAlpha(enabled ? 1f : 0.5f);
     }
 }
