@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fuel types -->
+    <string-array name="fuel_types">
+        <item>Petrol</item>
+        <item>Diesel</item>
+        <item>CNG</item>
+        <item>Electric</item>
+        <item>Hybrid</item>
+    </string-array>
+
+    <!-- Transmission types -->
+    <string-array name="transmission_types">
+        <item>Manual</item>
+        <item>Automatic</item>
+    </string-array>
+
+    <!-- Owner counts -->
+    <string-array name="owner_counts">
+        <item>1st Owner</item>
+        <item>2nd Owner</item>
+        <item>3rd Owner</item>
+        <item>4th Owner</item>
+        <item>Above 4</item>
+    </string-array>
+</resources>

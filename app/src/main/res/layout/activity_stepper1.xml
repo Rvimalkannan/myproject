@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Header with back button and title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="#FFFFFF">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="28dp"-->
+<!--            android:layout_height="28dp"-->
+<!--            android:src="@drawable/ic_arrow_back_gray"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:padding="2dp" />-->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add New Car"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#333333"
+            android:gravity="start"
+            android:layout_marginStart="12dp" />
+
+    </LinearLayout>
+
+    <!-- Progress Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Step Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 1 of 25%"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:progress="25"
+            android:progressTint="#8B5CF6"
+            android:progressBackgroundTint="#E5E7EB"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+
+    <!-- Main Content Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Upload Images Container -->
+        <LinearLayout
+            android:id="@+id/upload_container"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#E5E7EB"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="16dp">
+
+            <!-- Upload Images Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Images"
+                android:textSize="22sp"
+                android:textStyle="normal"
+                android:textColor="#374151"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Upload Icon -->
+            <ImageView
+                android:id="@+id/upload_icon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/fileupload"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Upload Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Car Images"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textColor="#374151"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drag &amp; drop or click to select images"
+                android:textSize="14sp"
+                android:textColor="#6B7280"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maximum 8 images • JPG, PNG supported"
+                android:textSize="12sp"
+                android:textColor="#9CA3AF" />
+
+        </LinearLayout>
+
+        <!-- Photo Tips Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#F3F4F6"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- Photo Tips Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/cam"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photo Tips"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#374151" />
+
+            </LinearLayout>
+
+            <!-- Tips List -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Take photos in good lighting"
+                    android:textSize="14sp"
+                    android:textColor="#6B7280"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Include exterior, interior, and engine shots"
+                    android:textSize="14sp"
+                    android:textColor="#6B7280"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Show any damage or wear clearly"
+                    android:textSize="14sp"
+                    android:textColor="#6B7280"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• First image will be used as cover photo"
+                    android:textSize="14sp"
+                    android:textColor="#6B7280" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Continue Button Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Continue"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textColor="@android:color/white"
+            android:background="#8B5CF6"
+            android:enabled="true" />
+
+    </LinearLayout>
+
+</LinearLayout>
