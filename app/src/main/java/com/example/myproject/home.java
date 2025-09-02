@@ -1,6 +1,14 @@
 package com.example.myproject;
 
+
+
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,7 +24,12 @@ public class home extends AppCompatActivity {
 
     private TextView tvHeaderTitle;
     private TextView tvHeaderSub;
+    private View header;
+    private LinearLayout allCars;
+    private EditText editText;
 
+
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +40,10 @@ public class home extends AppCompatActivity {
         BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
         tvHeaderTitle = findViewById(R.id.tvHeaderTitle);
         tvHeaderSub = findViewById(R.id.tvHeaderSub);
+        header = findViewById(R.id.header_bg);
+        allCars = findViewById(R.id.header_container);
+//        editText = findViewById(R.id.et_search);
+
 
         // Handle window insets properly for EdgeToEdge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -55,21 +72,30 @@ public class home extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_browse) {
+                header.setBackgroundColor(Color.parseColor("#4FA8FF"));
+                header.setVisibility(View.VISIBLE);
+                tvHeaderTitle.setVisibility(View.VISIBLE);
+                tvHeaderSub.setVisibility(View.VISIBLE);
+                allCars.setVisibility(View.GONE);
                 selectedFragment = new Allcars();
                 title = "Available Cars";
                 subtitle = "Browse dealer inventory";
             } else if (id == R.id.nav_my_cars) {
                 selectedFragment = new Mycars();
-                title = "My Cars";
-                subtitle = "Your saved vehicles";
+                header.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                allCars.setVisibility(View.VISIBLE);
+                //editText.setVisibility(View.VISIBLE);
+                header.setVisibility(View.VISIBLE);
+                tvHeaderTitle.setVisibility(View.GONE);
+                tvHeaderSub.setVisibility(View.GONE);
             } else if (id == R.id.nav_messages) {
+                header.setVisibility(View.GONE);
                 selectedFragment = new Message();
-                title = "You see the Details";
-                subtitle = "Chat with dealers";
+
             } else if (id == R.id.nav_profile) {
+                header.setVisibility(View.GONE);
                 selectedFragment = new Profile();
-                title = "About You";
-                subtitle = "Manage your account";
+
             }
 
             if (selectedFragment != null) {

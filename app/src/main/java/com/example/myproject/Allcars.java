@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 public class Allcars extends Fragment {
 
     @Nullable
@@ -29,7 +31,19 @@ public class Allcars extends Fragment {
             TextView tvDetails = view.findViewById(R.id.tvCarDetails);
 
             Intent intent = new Intent(getActivity(), cardetails.class);
-            intent.putExtra("car_image", R.drawable.carimg);
+            ArrayList<Integer> imageList = new ArrayList<>();
+            imageList.add(R.drawable.carimg);
+            imageList.add(R.drawable.img3);
+            imageList.add(R.drawable.img4);
+            imageList.add(R.drawable.img5);
+            imageList.add(R.drawable.img6);
+            imageList.add(R.drawable.img7);
+            imageList.add(R.drawable.img8);
+            imageList.add(R.drawable.img10);
+            imageList.add(R.drawable.img11);
+            imageList.add(R.drawable.img12);
+
+            intent.putIntegerArrayListExtra("image_list", imageList);
             intent.putExtra("car_title", tvTitle.getText().toString());
             intent.putExtra("car_price", tvPrice.getText().toString());
             intent.putExtra("car_details", tvDetails.getText().toString());

@@ -19,10 +19,9 @@
         app:tabIndicatorColor="@android:color/white"
         app:tabSelectedTextColor="#0F0F0F"
         app:tabTextColor="#10ACD7"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="NotSibling" />
+        tools:ignore="MissingConstraints,NotSibling" />
 
     <!-- 🔹 ViewPager2 -->
     <androidx.viewpager2.widget.ViewPager2

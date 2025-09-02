@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,23 +17,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Myproject">
         <activity
+            android:name=".stepper4"
+            android:exported="false" />
+        <activity
+            android:name=".stepper3"
+            android:exported="false" />
+        <activity
+            android:name=".stepper2"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".stepper1"
+            android:exported="false" />
+        <activity
             android:name=".Saleview"
             android:exported="false" />
         <activity
             android:name=".cardetails"
-            android:exported="false" />
-        <activity
-            android:name=".Profile"
-            android:exported="false" />
-        <activity
-            android:name=".Message"
-            android:exported="false" />
-        <activity
-            android:name=".Mycars"
-            android:exported="false" />
-        <activity
-            android:name=".Allcars"
-            android:exported="false" />
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Profile" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Message" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Mycars" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Allcars" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".home"
             android:exported="false" />

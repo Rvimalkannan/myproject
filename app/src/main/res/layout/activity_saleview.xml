@@ -1,10 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp"
     tools:context=".Saleview">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#1A237E"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New Car"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List your inventory"
+                android:textSize="14sp"
+                android:textColor="#E4D9D9"/>
+        </LinearLayout>
+
+        <!-- Upload Photos -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car Photos"
+            android:textStyle="bold"
+            android:paddingTop="12dp"
+            android:textColor="#1A237E" />
+
+        <FrameLayout
+            android:id="@+id/photoUploadContainer"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#BCBCBC"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📷 Upload Photos\nTap to add images"
+                android:gravity="center"
+                android:textColor="#888"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:id="@+id/ivCarPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Car Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car Name"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etCarName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter car name"
+            android:inputType="text"/>
+
+        <!-- Variant -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Variant"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etVariant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter variant"
+            android:inputType="text"/>
+
+        <!-- Number of Owners -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Owners"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etOwners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter number of owners"
+            android:inputType="number"/>
+
+        <!-- Year -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Year"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_dropdown_light_frame"/>
+
+        <!-- Insurance End Date -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insurance End Date"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etInsuranceDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DD/MM/YYYY"
+            android:inputType="date"/>
+
+        <!-- Fuel Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fuel Type"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerFuel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_dropdown_light_frame"/>
+
+        <!-- Kilometers Driven -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kilometers Driven"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etKmDriven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter km driven"
+            android:inputType="number"/>
+
+        <!-- Transmission -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transmission"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerTransmission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_dropdown_light_frame"/>
+
+        <!-- Location -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter location"
+            android:inputType="text"/>
+
+        <!-- Price -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter price"
+            android:inputType="number"/>
+
+        <!-- Reference Remarks -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reference Remarks"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter remarks"
+            android:inputType="textMultiLine"
+            android:minLines="3"/>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Car"
+            android:backgroundTint="#1A237E"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+</ScrollView>
