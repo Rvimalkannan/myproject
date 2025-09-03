@@ -34,8 +34,11 @@ public class stepper3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stepper3);
 
-        // Get selected images and other data from previous step
-        selectedImages = getIntent().getStringArrayListExtra("selected_images");
+        Intent intentImage = getIntent();
+        ArrayList<String> selectedImages = intentImage.getStringArrayListExtra("selected_images");
+
+//        // Get selected images and other data from previous step
+//        selectedImages = getIntent().getStringArrayListExtra("selected_images");
 
         initializeViews();
         setupSpinners();

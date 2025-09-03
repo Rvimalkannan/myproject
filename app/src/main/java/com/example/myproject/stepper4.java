@@ -26,7 +26,7 @@ public class stepper4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stepper4); // <-- Change to your XML file name
+        setContentView(R.layout.activity_stepper4);
 
         // Get selected images from intent
         selectedImages = getIntent().getStringArrayListExtra("selected_images");
@@ -52,7 +52,8 @@ public class stepper4 extends AppCompatActivity {
             carLocation.setText(extras.getString("location", ""));
             fuelType.setText(extras.getString("fuel_type", ""));
             transmission.setText(extras.getString("transmission", ""));
-            kmsDriven.setText(extras.getString("kms_driven", "") + " km");
+            String kms = extras.getString("kms_driven", "");
+            kmsDriven.setText(kms.isEmpty() ? "" : (kms + " km"));
             ownerCount.setText(extras.getString("owner_count", ""));
             description.setText(extras.getString("description", ""));
         }
@@ -61,20 +62,20 @@ public class stepper4 extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        backButton = findViewById(R.id.backButton);   // Add id in XML if missing
+        backButton = findViewById(R.id.backButton);
         carImage = findViewById(R.id.carImage);
-        carTitle = findViewById(R.id.carTitle);       // Add id in XML
-        carPrice = findViewById(R.id.carPrice);       // Add id in XML
-        carLocation = findViewById(R.id.carLocation); // Add id in XML
-        fuelType = findViewById(R.id.fuelType);       // Add id in XML
+        carTitle = findViewById(R.id.carTitle);
+        carPrice = findViewById(R.id.carPrice);
+        carLocation = findViewById(R.id.carLocation);
+        fuelType = findViewById(R.id.fuelType);
         transmission = findViewById(R.id.transmission);
         kmsDriven = findViewById(R.id.kmsDriven);
         ownerCount = findViewById(R.id.ownerCount);
         description = findViewById(R.id.description);
         progressBar = findViewById(R.id.progressBar);
-        featureSwitch = findViewById(R.id.featureSwitch); // Add id in XML
-        btnPrevious = findViewById(R.id.btnPrevious);     // Add id in XML
-        btnPublish = findViewById(R.id.btnPublish);       // Add id in XML
+        featureSwitch = findViewById(R.id.featureSwitch);
+        btnPrevious = findViewById(R.id.btnPrevious);
+        btnPublish = findViewById(R.id.btnPublish);
     }
 
     private void setupClickListeners() {
@@ -108,5 +109,3 @@ public class stepper4 extends AppCompatActivity {
         });
     }
 }
-
-

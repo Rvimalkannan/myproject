@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     EditText editEmail, editPassword;
     Button btnLogin;
     TextView txtRegister;
@@ -38,12 +40,23 @@ public class MainActivity extends AppCompatActivity {
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Example hardcoded login check
-                    Toast.makeText(MainActivity.this, "Login Successful ✅", Toast.LENGTH_SHORT).show();
-
-                    // Redirect to HomeActivity (create HomeActivity.java)
-                    Intent intent = new Intent(MainActivity.this, home.class);
-                    startActivity(intent);
+                    loginapi.login(email, password, new loginapi.LoginCallback() {
+                        @Override
+                        public void onResult(boolean success, String response) {
+                            if (success) {
+                                runOnUiThread(() ->
+                                        Toast.makeText(MainActivity.this, "Login Successful ✅", Toast.LENGTH_SHORT).show()
+                                );
+                                // Redirect to Home
+                                Intent intent = new Intent(MainActivity.this, home.class);
+                                startActivity(intent);
+                            } else {
+                                runOnUiThread(() ->
+                                        Toast.makeText(MainActivity.this, "Login Failed: ", Toast.LENGTH_SHORT).show()
+                                );
+                            }
+                        }
+                    });
                 }
             }
         });

@@ -4,10 +4,12 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,6 +24,7 @@ public class stepper1 extends AppCompatActivity {
 
     private GridLayout selectedImagesGrid;
     private Button btnContinue;
+    private ScrollView scrollbarImage;
     private final ArrayList<Uri> imageUris = new ArrayList<>();
 
     private ActivityResultLauncher<Intent> pickImagesLauncher;
@@ -34,6 +37,7 @@ public class stepper1 extends AppCompatActivity {
         LinearLayout uploadContainer = findViewById(R.id.upload_container);
         selectedImagesGrid = findViewById(R.id.selected_images_grid);
         btnContinue = findViewById(R.id.btnContinue);
+        scrollbarImage = findViewById(R.id.scrollbarImage);
 
         // Picker
         pickImagesLauncher = registerForActivityResult(
@@ -45,6 +49,7 @@ public class stepper1 extends AppCompatActivity {
 
                         int added = 0;
                         if (clipData != null) {
+                            scrollbarImage.setVisibility(View.VISIBLE);
                             int count = clipData.getItemCount();
                             for (int i = 0; i < count; i++) {
                                 if (imageUris.size() >= MAX_IMAGES) break;
@@ -53,6 +58,7 @@ public class stepper1 extends AppCompatActivity {
                                 added++;
                             }
                         } else if (singleImage != null && imageUris.size() < MAX_IMAGES) {
+                            scrollbarImage.setVisibility(View.VISIBLE);
                             imageUris.add(singleImage);
                             added++;
                         }
@@ -77,7 +83,7 @@ public class stepper1 extends AppCompatActivity {
             Intent intent = new Intent(this, stepper2.class);
             ArrayList<String> asStrings = new ArrayList<>();
             for (Uri u : imageUris) asStrings.add(u.toString());
-            intent.putStringArrayListExtra("images", asStrings);
+            intent.putStringArrayListExtra("selected_images", asStrings);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         });
