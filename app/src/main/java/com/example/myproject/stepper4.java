@@ -16,7 +16,7 @@ public class stepper4 extends AppCompatActivity {
 
     // UI Components
     private ImageView backButton, carImage;
-    private TextView carTitle, carPrice, carLocation,
+    private TextView carTitle, carPrice, carLocation,carBrand,
             fuelType, transmission, kmsDriven, ownerCount, description;
     private ProgressBar progressBar;
     private Switch featureSwitch;
@@ -38,6 +38,7 @@ public class stepper4 extends AppCompatActivity {
         if (selectedImages != null && !selectedImages.isEmpty()) {
             try {
                 carImage.setImageURI(Uri.parse(selectedImages.get(0)));
+//                Toast.makeText(this, "Successfully", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
@@ -47,7 +48,8 @@ public class stepper4 extends AppCompatActivity {
         // Set data from intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            carTitle.setText(extras.getString("car_name", ""));
+            carTitle.setText(extras.getString("carName", ""));
+            carBrand.setText(extras.getString("brand", ""));
             carPrice.setText(extras.getString("price", ""));
             carLocation.setText(extras.getString("location", ""));
             fuelType.setText(extras.getString("fuel_type", ""));
@@ -65,6 +67,7 @@ public class stepper4 extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         carImage = findViewById(R.id.carImage);
         carTitle = findViewById(R.id.carTitle);
+        carBrand = findViewById(R.id.carBrand);
         carPrice = findViewById(R.id.carPrice);
         carLocation = findViewById(R.id.carLocation);
         fuelType = findViewById(R.id.fuelType);

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8F9FA">
+    android:background="#F8F9FA"
+    android:id="@+id/stepper2">
 
     <!-- Header -->
     <LinearLayout
@@ -17,7 +18,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_media_previous" />
+            android:src="@drawable/backarrow" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,36 +34,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#FFFFFF">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Step 2 of 4"
-            android:textSize="14sp"
-            android:textColor="#555" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Step 2of 4"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <ProgressBar
-            style="@android:style/Widget.ProgressBar.Horizontal"
             android:id="@+id/progressBar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="12dp"
-            android:progress="50"
-            android:max="100"
-            android:progressTint="#FF6F00"
-            android:progressDrawable="@android:drawable/progress_horizontal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50%"
-            android:textSize="14sp"
-            android:textColor="#555" />
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progress="75"
+            android:progressTint="#F97316"
+            android:progressBackgroundTint="#E5E7EB" />
     </LinearLayout>
+
 
     <!-- Scrollable Content -->
     <ScrollView
@@ -92,13 +101,15 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
+                app:cardBackgroundColor="#F0F4FF"
                 android:layout_marginBottom="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/card_gradient_technical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -117,13 +128,14 @@
                         android:layout_height="wrap_content"
                         android:text="Car Name*"
                         android:textColor="#000"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp"/>
                     <EditText
                         android:id="@+id/etCarName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="e.g., BMW X5"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/edittext_background"
                         android:padding="10dp"
                         android:layout_marginBottom="12dp" />
 
@@ -146,13 +158,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="Brand*"
                                 android:textColor="#000"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp"/>
                             <EditText
                                 android:id="@+id/etBrand"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="BMW"
-                                android:background="@android:drawable/edit_text"
+                                android:background="@drawable/edittext_background"
                                 android:padding="10dp" />
                         </LinearLayout>
 
@@ -168,13 +181,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="Model*"
                                 android:textColor="#000"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp"/>
                             <EditText
                                 android:id="@+id/etModel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="X5"
-                                android:background="@android:drawable/edit_text"
+                                android:background="@drawable/edittext_background"
                                 android:padding="10dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -199,12 +213,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="Year*"
                                 android:textColor="#000"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp"/>
                             <Spinner
                                 android:id="@+id/spinnerYear"
                                 android:layout_width="match_parent"
                                 android:layout_height="48dp"
-
                                 android:background="@drawable/spinner_background"/>
                         </LinearLayout>
 
@@ -220,13 +234,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="Category*"
                                 android:textColor="#000"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp"/>
                             <Spinner
                                 android:id="@+id/spinnerCategory"
                                 android:layout_width="match_parent"
                                 android:layout_height="48dp"
-                                android:background="@drawable/spinner_background"
-                               />
+                                android:background="@drawable/spinner_background"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -238,13 +252,15 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
+                app:cardBackgroundColor="#F0F4FF"
                 android:layout_marginBottom="80dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/card_gradient_technical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -263,14 +279,15 @@
                         android:layout_height="wrap_content"
                         android:text="Price (₹)*"
                         android:textColor="#000"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp"/>
                     <EditText
                         android:id="@+id/etPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="200000"
                         android:inputType="number"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/edittext_background"
                         android:padding="10dp"
                         android:layout_marginBottom="12dp" />
 
@@ -280,13 +297,14 @@
                         android:layout_height="wrap_content"
                         android:text="Location*"
                         android:textColor="#000"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp"/>
                     <EditText
                         android:id="@+id/etLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Salem Fairlans"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/edittext_background"
                         android:padding="10dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -308,7 +326,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Previous"
-            android:backgroundTint="#E0E0E0" />
+            android:backgroundTint="#B5AEAE"
+            android:textColor="#F4F4F4" />
 
         <Button
             android:id="@+id/btnContinue"

@@ -17,6 +17,8 @@ public class stepper3 extends AppCompatActivity {
     private ScrollView stepper3;
     private ImageView btnBack, btnCalendar;
     private TextView tvProgress;
+
+    private EditText etCarName, etBrand, etModel, etPrice, etLocation;
     private ProgressBar progressBar;
     private Spinner spinnerFuelType, spinnerTransmission, spinnerOwnerCount;
     private EditText etKmsDriven, etDescription, etInsuranceEndDate;
@@ -195,7 +197,6 @@ public class stepper3 extends AppCompatActivity {
                 if (position > 0) {
                     String selectedFuelType = parent.getItemAtPosition(position).toString();
                     // Handle fuel type selection
-                    Toast.makeText(stepper3.this, "Selected: " + selectedFuelType, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -209,7 +210,6 @@ public class stepper3 extends AppCompatActivity {
                 if (position > 0) {
                     String selectedTransmission = parent.getItemAtPosition(position).toString();
                     // Handle transmission selection
-                    Toast.makeText(stepper3.this, "Selected: " + selectedTransmission, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -223,7 +223,6 @@ public class stepper3 extends AppCompatActivity {
                 if (position > 0) {
                     String selectedOwnerCount = parent.getItemAtPosition(position).toString();
                     // Handle owner count selection
-                    Toast.makeText(stepper3.this, "Selected: " + selectedOwnerCount, Toast.LENGTH_SHORT).show();
                 }
             }
 
