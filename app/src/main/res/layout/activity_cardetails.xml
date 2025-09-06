@@ -1,283 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".cardetails">
+    android:background="#F8F9FA"
+    android:id="@+id/cardetails">
 
-    <!-- Scrollable content -->
+    <!-- Header / App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#FFFFFF"
+            app:title="Car Details"
+            app:titleTextColor="#0F172A"
+            app:navigationIcon="@drawable/backarrow" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Header -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Car Title -->
+            <TextView
+                android:id="@+id/tvCarName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#4FA8FF"
-                android:padding="16dp"
-                android:orientation="vertical">
+                android:text="Car Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Car Details"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvCarModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car Model"
+                android:textSize="16sp"
+                android:textColor="#666"
+                android:layout_marginBottom="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vehicle Information"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-
-            <!-- Car Image Section -->
+            <!-- Image Slider -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#EAEAEA"
-                android:layout_marginTop="12dp">
+                android:layout_height="220dp"
+                android:layout_marginBottom="12dp">
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
+                    android:id="@+id/viewPager2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+                <ImageButton
+                    android:id="@+id/btnPrev"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical|start"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_media_previous"
+                    app:tint="#444444"
+                    android:padding="6dp" />
+
+                <ImageButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_media_next"
+                    app:tint="#444444"
+                    android:padding="6dp" />
             </FrameLayout>
 
-            <!-- Indicator dots -->
+            <!-- Price Card -->
             <LinearLayout
-                android:id="@+id/dotsIndicator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:padding="4dp"/>
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_horizontal">
 
-            <!-- Car Title & Availability -->
+                <TextView
+                    android:id="@+id/tvCarPriceDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹75,00,000"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A73E8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On Road Price"
+                    android:textSize="14sp"
+                    android:textColor="#666" />
+            </LinearLayout>
+
+            <!-- Car Details Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car Details"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Car Details Grid -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- Year -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/card_gradient"
+                    android:gravity="center_vertical"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/calender"
+                        app:tint="#6D1E97" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Year"
+                            android:textSize="12sp"
+                            android:textColor="#666" />
+
+                        <TextView
+                            android:id="@+id/tvCarYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2023"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- KM Driven -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/card_gradient"
+                    android:gravity="center_vertical"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/km" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="KM Driven"
+                            android:textSize="12sp"
+                            android:textColor="#666" />
+
+                        <TextView
+                            android:id="@+id/tvCarKm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12,500"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Fuel Type -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/card_gradient"
+                    android:gravity="center_vertical"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/fuel" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fuel Type"
+                            android:textSize="12sp"
+                            android:textColor="#666" />
+
+                        <TextView
+                            android:id="@+id/tvCarFuel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Petrol"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Ownership -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/card_gradient"
+                    android:gravity="center_vertical"
+                    android:layout_margin="6dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/owner" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ownership"
+                            android:textSize="12sp"
+                            android:textColor="#666" />
+
+                        <TextView
+                            android:id="@+id/tvCarOwner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1st Owner"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </GridLayout>
+
+            <!-- Location -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/tvCarTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/loc1" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AVAILABLE"
-                    android:textColor="#211F1F"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:padding="6dp"
-                    android:textSize="12sp"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
 
-            <!-- Price -->
-            <TextView
-                android:id="@+id/tvCarPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#007BFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available in"
+                        android:textSize="12sp"
+                        android:textColor="#666" />
 
-            <!-- Car Details -->
-            <TextView
-                android:id="@+id/tvCarDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#555"
-                android:layout_marginTop="8dp"/>
-
-            <!-- Vehicle Specifications -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#F5F5F5">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vehicle Specifications"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Year: 2022     Mileage: 17"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Color: Red     Transmission: Automatic"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fuel: Petrol     Engine: 3.0L Turbo I6"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-
-            <!-- Key Features -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Key Features"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="12dp"/>
-
-<!--            <com.google.android.flexbox.FlexboxLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:flexWrap="wrap"-->
-<!--                app:justifyContent="flex_start"-->
-<!--                android:layout_marginTop="8dp">-->
-
-<!--                <Button-->
-<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Leather Seats"/>-->
-
-<!--                <Button-->
-<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Navigation System"/>-->
-
-<!--                <Button-->
-<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Backup Camera"/>-->
-
-<!--                <Button-->
-<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="360cam"/>-->
-<!--            </com.google.android.flexbox.FlexboxLayout>-->
-
-            <!-- Description -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Excellent conditionon the Audi S5 Sportback. Well maintained, single owner vehicle. Perfect for luxury SUV enthusiasts."
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-
-            <!-- Dealer Information -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#F5F5F5">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dealer Information"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Elite Auto Group\nSalem, Fairlands\n📞 63743922913\n✉ Vimal@gmail.com"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Posted 7 days ago"
-                    android:textSize="12sp"
-                    android:textColor="#888888"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
-
-            <!-- Buttons -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="16dp">
-
-                <Button
-                    android:id="@+id/btnSendRequest"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#007BFF"
-                    android:text="Send Request"
-                    android:textColor="#FFFFFF"/>
-
-                <Space
-                    android:layout_width="12dp"
-                    android:layout_height="wrap_content"/>
-
-                <Button
-                    android:id="@+id/btnCallNow"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#4CAF50"
-                    android:text="Call Now"
-                    android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:id="@+id/tvCarLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mumbai"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#000" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <!-- Example overlay item (you can remove if not needed) -->
-    <TextView
-        android:id="@+id/overlayLabel"
-        android:layout_width="wrap_content"
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Overlay Text"
-        android:background="#AA000000"
-        android:textColor="#FFFFFF"
-        android:padding="8dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:visibility="gone"/>
-</FrameLayout>
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <!-- Call Dealer (Blue Filled Button) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCallDealer"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Call Dealer"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#191970"
+            android:layout_marginEnd="8dp"
+            style="@style/Widget.MaterialComponents.Button" />
+
+        <!-- Test Drive (Outlined Button with Border) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTestDrive"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Test Drive"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-medium"
+            app:cornerRadius="12dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gray"
+            app:backgroundTint="@android:color/white"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

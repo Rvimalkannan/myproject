@@ -1,658 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:id="@+id/allScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F7F9FB"
+    android:padding="16dp"
     tools:context=".Allcars">
 
-    <LinearLayout
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AutoHub"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#0F172A"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Search bar -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/search"
+                app:tint="#8A94A6" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:hint="Search cars..."
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:textColor="#0F172A"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Tabs row -->
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:paddingBottom="12dp">
 
-        <!-- First Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/tabsContainer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/carimg" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2022 Aadi X5666"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS45,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:13kM\nColor: Red\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Second Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar1"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/benz" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2020 Benz X5"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS55,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:14KM\nColor: Blue\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Third Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bmw" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2021 Bmw v3"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS60,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:12KM\nColor: White\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Fourth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar3"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/honda" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2019 Honda 2Z"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS30,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:14KM\nColor: Orange\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Fifth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar5"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/suzuki" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2023 suzuki X10"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS25,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:17KM\nColor: Black\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Sixth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar6"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/unova" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2020 unova S5"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS40,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:15KM\nColor:White\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Seventh Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar7"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/mini" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2022 Mini X5"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS15,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:12KM\nColor: Green\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Eighth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar8"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/vv" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2019 Voltswogen X5"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS35,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:16KM\nColor: White\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Ninth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar9"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/tata" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2022 TATA X7"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS35,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:18KM\nColor: blue\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Tenth Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/carCard4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgCar4"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/thor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/tvCarTitle4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2024 Thor xx4"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCarPrice4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RS45,00,000"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvCarDetails4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mileage:12KM\nColor: White\nTransmission: Automatic"
-                        android:textColor="#555"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/btnViewDetails10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View Details"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/black"
-                        android:textColor="@android:color/white"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-</ScrollView>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tabAll"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_active"
+                android:text="All"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tabSedan"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_inactive"
+                android:text="Sedan"
+                android:textColor="#344054"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tabSUV"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_inactive"
+                android:text="SUV"
+                android:textColor="#344054"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tabHatch"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_inactive"
+                android:text="Hatchback"
+                android:textColor="#344054"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tabElectric"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_inactive"
+                android:text="Electric"
+                android:textColor="#344054"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tabLuxury"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:background="@drawable/tab_inactive"
+                android:text="Luxury"
+                android:textColor="#344054"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- RecyclerView for cars -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCars"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"/>
+
+</LinearLayout>

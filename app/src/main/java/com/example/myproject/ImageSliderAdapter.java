@@ -1,24 +1,29 @@
 package com.example.myproject;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder> {
     private final ArrayList<Integer> imageList;
+    private final Context context;
 
-    public ImageSliderAdapter(ArrayList<Integer> imageList) {
+    public ImageSliderAdapter(Context context, ArrayList<Integer> imageList) {
+        this.context = context;
         this.imageList = imageList;
     }
 
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slide_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.slide_item, parent, false);
         return new ImageViewHolder(view);
     }
 
@@ -34,7 +39,6 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
 
     static class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-
         ImageViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.slideImageView);

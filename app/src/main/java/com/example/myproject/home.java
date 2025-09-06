@@ -25,6 +25,9 @@ public class home extends AppCompatActivity {
     private TextView tvHeaderTitle;
     private TextView tvHeaderSub;
     private View header;
+    private View frontHeader;
+
+
     private LinearLayout allCars;
     private EditText editText;
 
@@ -73,16 +76,16 @@ public class home extends AppCompatActivity {
 
             if (id == R.id.nav_browse) {
                 header.setBackgroundColor(Color.parseColor("#4FA8FF"));
-                header.setVisibility(View.VISIBLE);
-                tvHeaderTitle.setVisibility(View.VISIBLE);
-                tvHeaderSub.setVisibility(View.VISIBLE);
+                header.setVisibility(View.GONE);
+                tvHeaderTitle.setVisibility(View.GONE);
+                tvHeaderSub.setVisibility(View.GONE);
+                String textColor;
+                android:textColor="#F59E0B";
                 allCars.setVisibility(View.GONE);
                 selectedFragment = new Allcars();
-                title = "Available Cars";
-                subtitle = "Browse dealer inventory";
             } else if (id == R.id.nav_my_cars) {
                 selectedFragment = new Mycars();
-                header.setBackgroundColor(Color.parseColor("#FFFFFF"));
+//                header.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 allCars.setVisibility(View.VISIBLE);
                 //editText.setVisibility(View.VISIBLE);
                 header.setVisibility(View.VISIBLE);
@@ -90,10 +93,15 @@ public class home extends AppCompatActivity {
                 tvHeaderSub.setVisibility(View.GONE);
             } else if (id == R.id.nav_messages) {
                 header.setVisibility(View.GONE);
+                tvHeaderTitle.setVisibility(View.GONE);
+                tvHeaderSub.setVisibility(View.GONE);
+                allCars.setVisibility(View.GONE);
                 selectedFragment = new Message();
 
             } else if (id == R.id.nav_profile) {
                 header.setVisibility(View.GONE);
+                tvHeaderTitle.setVisibility(View.GONE);
+                tvHeaderSub.setVisibility(View.GONE);
                 selectedFragment = new Profile();
 
             }

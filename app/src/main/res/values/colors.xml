@@ -11,5 +11,9 @@
     <color name="green">#16A34A</color>
     <color name="orange">#F97316</color>
 
+    <color name="bottom_nav_bg">#0F172A</color>        <!-- dark navy background -->
+    <color name="bottom_nav_active">#F59E0B</color>    <!-- orange for active -->
+    <color name="bottom_nav_inactive">#9AA4B2</color>  <!-- grey for inactive -->
+    <color name="bottom_nav_ripple">#26F59E0B</color>  <!-- optional ripple (alpha + active) -->
 </resources>
 
