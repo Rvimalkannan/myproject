@@ -1,7 +1,5 @@
 package com.example.myproject;
 
-
-
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,12 +23,8 @@ public class home extends AppCompatActivity {
     private TextView tvHeaderTitle;
     private TextView tvHeaderSub;
     private View header;
-    private View frontHeader;
-
-
     private LinearLayout allCars;
-    private EditText editText;
-
+    private BottomNavigationView bottomNavigation;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -40,13 +34,11 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Initialize views
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
         tvHeaderTitle = findViewById(R.id.tvHeaderTitle);
         tvHeaderSub = findViewById(R.id.tvHeaderSub);
         header = findViewById(R.id.header_bg);
         allCars = findViewById(R.id.header_container);
-//        editText = findViewById(R.id.et_search);
-
 
         // Handle window insets properly for EdgeToEdge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -55,16 +47,18 @@ public class home extends AppCompatActivity {
             // Only apply top and horizontal padding to main container
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
 
-            // Apply bottom padding to bottom navigation
-            bottomNavigation.setPadding(0, 0, 0, systemBars.bottom);
+            // Apply bottom padding to bottom navigation to account for system navigation
+            int bottomPadding = systemBars.bottom;
+            bottomNavigation.setPadding(0, 0, 0, bottomPadding);
 
             return insets;
         });
 
         if (savedInstanceState == null) {
             loadFragment(new Allcars()); // default fragment
-            // Set default header
             updateHeader("Available Cars", "Browse dealer inventory");
+            // Set default selected item
+            bottomNavigation.setSelectedItemId(R.id.nav_browse);
         }
 
         bottomNavigation.setOnItemSelectedListener(item -> {
@@ -75,44 +69,49 @@ public class home extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_browse) {
-                header.setBackgroundColor(Color.parseColor("#4FA8FF"));
-                header.setVisibility(View.GONE);
-                tvHeaderTitle.setVisibility(View.GONE);
-                tvHeaderSub.setVisibility(View.GONE);
-                String textColor;
-                android:textColor="#F59E0B";
-                allCars.setVisibility(View.GONE);
+                // Hide all headers for browse
+                hideAllHeaders();
                 selectedFragment = new Allcars();
+                title = "Available Cars";
+                subtitle = "Browse dealer inventory";
+
             } else if (id == R.id.nav_my_cars) {
-                selectedFragment = new Mycars();
-//                header.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                // Show custom header for my cars
+                hideDefaultHeaders();
                 allCars.setVisibility(View.VISIBLE);
-                //editText.setVisibility(View.VISIBLE);
                 header.setVisibility(View.VISIBLE);
-                tvHeaderTitle.setVisibility(View.GONE);
-                tvHeaderSub.setVisibility(View.GONE);
+                selectedFragment = new Mycars();
+
             } else if (id == R.id.nav_messages) {
-                header.setVisibility(View.GONE);
-                tvHeaderTitle.setVisibility(View.GONE);
-                tvHeaderSub.setVisibility(View.GONE);
-                allCars.setVisibility(View.GONE);
+                hideAllHeaders();
                 selectedFragment = new Message();
 
             } else if (id == R.id.nav_profile) {
-                header.setVisibility(View.GONE);
-                tvHeaderTitle.setVisibility(View.GONE);
-                tvHeaderSub.setVisibility(View.GONE);
+                hideAllHeaders();
                 selectedFragment = new Profile();
-
             }
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);
-                updateHeader(title, subtitle);
+                if (!title.isEmpty()) {
+                    updateHeader(title, subtitle);
+                }
             }
 
             return true;
         });
+    }
+
+    private void hideAllHeaders() {
+        header.setVisibility(View.GONE);
+        tvHeaderTitle.setVisibility(View.GONE);
+        tvHeaderSub.setVisibility(View.GONE);
+        allCars.setVisibility(View.GONE);
+    }
+
+    private void hideDefaultHeaders() {
+        tvHeaderTitle.setVisibility(View.GONE);
+        tvHeaderSub.setVisibility(View.GONE);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -122,16 +121,21 @@ public class home extends AppCompatActivity {
     }
 
     private void updateHeader(String title, String subtitle) {
-        // Fade out
-        tvHeaderTitle.animate().alpha(0f).setDuration(150).withEndAction(() -> {
-            tvHeaderTitle.setText(title);
-            // Fade in
-            tvHeaderTitle.animate().alpha(1f).setDuration(150);
-        });
+        if (tvHeaderTitle.getVisibility() == View.VISIBLE) {
+            // Fade out and update
+            tvHeaderTitle.animate().alpha(0f).setDuration(150).withEndAction(() -> {
+                tvHeaderTitle.setText(title);
+                tvHeaderTitle.animate().alpha(1f).setDuration(150);
+            });
 
-        tvHeaderSub.animate().alpha(0f).setDuration(150).withEndAction(() -> {
+            tvHeaderSub.animate().alpha(0f).setDuration(150).withEndAction(() -> {
+                tvHeaderSub.setText(subtitle);
+                tvHeaderSub.animate().alpha(1f).setDuration(150);
+            });
+        } else {
+            // Just set the text directly
+            tvHeaderTitle.setText(title);
             tvHeaderSub.setText(subtitle);
-            tvHeaderSub.animate().alpha(1f).setDuration(150);
-        });
+        }
     }
 }
