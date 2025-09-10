@@ -43,7 +43,7 @@
         android:gravity="center"
         android:paddingBottom="10dp"
         android:text="Browse dealer inventory"
-        android:textColor="@android:color/white"
+        android:textColor="#F59E0B"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         android:id="@+id/header_container"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="#4FA8FF"
+        android:background="#F59E0B"
         android:padding="16dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,16 +101,19 @@
         app:layout_constraintTop_toBottomOf="@id/header_bg" />
 
     <!-- Fragment Body -->
+
+    <!-- Fixed Bottom Navigation -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spacer_after_header" />
+        app:layout_constraintTop_toBottomOf="@id/spacer_after_header"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Fixed Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
@@ -120,18 +123,18 @@
         android:elevation="8dp"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
-        app:itemRippleColor="@null"
-        app:itemBackground="@null"
-        app:itemIconSize="24dp"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemActiveIndicatorStyle="@style/NoActiveIndicator"
+        app:itemBackground="@android:color/transparent"
         app:itemPaddingTop="8dp"
         app:itemPaddingBottom="8dp"
         app:itemHorizontalTranslationEnabled="false"
-        app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
-        app:itemTextAppearanceActive="@style/BottomNavTextAppearanceActive"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
