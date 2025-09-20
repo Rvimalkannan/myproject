@@ -38,9 +38,9 @@ public class Mycars extends Fragment {
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     switch (position) {
-                        case 0: tab.setText("All Cars"); break;
-                        case 1: tab.setText("Available"); break;
-                        case 2: tab.setText("Sold"); break;
+//                        case 0: tab.setText("All Cars"); break;
+                        case 0: tab.setText("Available"); break;
+                        case 1: tab.setText("Sold"); break;
                     }
                 }).attach();
 

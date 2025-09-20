@@ -37,7 +37,7 @@ public class home extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottomNavigation);
         tvHeaderTitle = findViewById(R.id.tvHeaderTitle);
         tvHeaderSub = findViewById(R.id.tvHeaderSub);
-        header = findViewById(R.id.header_bg);
+        //header = findViewById(R.id.header_bg);
         allCars = findViewById(R.id.header_container);
 
         // Handle window insets properly for EdgeToEdge
@@ -72,14 +72,18 @@ public class home extends AppCompatActivity {
                 // Hide all headers for browse
                 hideAllHeaders();
                 selectedFragment = new Allcars();
-                title = "Available Cars";
-                subtitle = "Browse dealer inventory";
+//                title = "Available Cars";
+//                subtitle = "Browse dealer inventory";
 
             } else if (id == R.id.nav_my_cars) {
                 // Show custom header for my cars
+                //header.setVisibility(View.GONE);
+                tvHeaderTitle.setVisibility(View.GONE);
+                tvHeaderSub.setVisibility(View.GONE);
+                allCars.setVisibility(View.GONE);
                 hideDefaultHeaders();
                 allCars.setVisibility(View.VISIBLE);
-                header.setVisibility(View.VISIBLE);
+                //header.setVisibility(View.VISIBLE);
                 selectedFragment = new Mycars();
 
             } else if (id == R.id.nav_messages) {
@@ -103,7 +107,7 @@ public class home extends AppCompatActivity {
     }
 
     private void hideAllHeaders() {
-        header.setVisibility(View.GONE);
+        //header.setVisibility(View.GONE);
         tvHeaderTitle.setVisibility(View.GONE);
         tvHeaderSub.setVisibility(View.GONE);
         allCars.setVisibility(View.GONE);

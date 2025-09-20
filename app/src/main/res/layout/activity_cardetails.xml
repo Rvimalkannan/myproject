@@ -446,7 +446,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
     <!-- Bottom Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -461,27 +460,38 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Call Dealer"
+            android:text="CALL DEALER"
             android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:cornerRadius="12dp"
-            app:backgroundTint="#191970"
+            app:backgroundTint="#0D9488"
             android:layout_marginEnd="8dp"
+            app:icon="@drawable/calicon"
+            app:iconGravity="textStart"
+            app:iconSize="20dp"
+            app:iconPadding="4dp"
+            app:iconTint="@android:color/white"
             style="@style/Widget.MaterialComponents.Button" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTestDrive"
+            android:id="@+id/btnSendRequest"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Test Drive"
-            android:textColor="@android:color/black"
+            android:text="SEND REQUEST"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:cornerRadius="12dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/gray"
-            app:backgroundTint="@android:color/white"
-            android:layout_marginStart="8dp" />
+            style="@style/Widget.MaterialComponents.Button"
+            app:backgroundTint="#0D9488"
+            android:layout_marginStart="8dp"
+            app:icon="@drawable/whatappicon"
+            app:iconGravity="textStart"
+            app:iconSize="20dp"
+            app:iconPadding="4dp"
+            android:iconTint="@android:color/white" />
 
     </LinearLayout>
-
 </LinearLayout>

@@ -9,15 +9,7 @@
     tools:context=".home">
 
     <!-- Header -->
-    <View
-        android:id="@+id/header_bg"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="#4FA8FF"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tvHeaderTitle"
@@ -29,11 +21,10 @@
         android:textSize="26sp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/header_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/header_bg"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.355" />
 
     <TextView
@@ -54,51 +45,49 @@
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="#F59E0B"
-        android:padding="16dp"
+        android:layout_height="56dp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:background="#F59E0B"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Top Header Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+    <!-- Top Header Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-            <!-- Title -->
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="All Cars"
-                android:textColor="#070707"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="My Cars"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Car Icon"
-                android:src="@drawable/buy" />
+        <!-- Icon -->
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_back"-->
+<!--            android:layout_width="28dp"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:src="@drawable/buy"-->
 
-        </LinearLayout>
+<!--        android:contentDescription="Cart Icon" />-->
 
     </LinearLayout>
 
-    <Space
-        android:id="@+id/spacer_after_header"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_bg" />
+</LinearLayout>
+
+
+
 
     <!-- Fragment Body -->
 
@@ -111,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spacer_after_header"
+        app:layout_constraintTop_toBottomOf="@id/header_container"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

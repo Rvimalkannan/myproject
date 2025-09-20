@@ -1,517 +1,535 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:id="@+id/available">
 
-    <LinearLayout
+    <!-- Scrollable content -->
+    <ScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- 🔹 First Car Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- IMAGE WITH STATUS -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp">
+
+                        <ImageView
+                            android:id="@+id/ivCarImage4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/benz"
+                            android:clipToOutline="true" />
+
+                        <TextView
+                            android:id="@+id/tvCarStatus4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:layout_gravity="top|end"
+                            android:background="@drawable/bg_status_available"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="AVAILABLE"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+
+                    <!-- PRICE -->
+                    <TextView
+                        android:id="@+id/tvCarPrice4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_price"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        android:text="₹55,00,000"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- CAR NAME -->
+                    <TextView
+                        android:id="@+id/tvCarName4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:text="benz C class 2021"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- DETAILS GRID -->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:columnCount="2">
+
+                        <!-- Driven -->
+                        <LinearLayout style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/km" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Driven"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="60,000 km"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Fuel -->
+                        <LinearLayout style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/fuel" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Fuel"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Petrol"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Transmission -->
+                        <LinearLayout style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/transmisson" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Transmission"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Automatic"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Posted -->
+                        <LinearLayout style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/calender"
+                                app:tint="#0D9488" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Posted"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="5 days ago"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </GridLayout>
+
+                    <!-- BUTTONS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <!-- 🔴 Mark Sold Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnMarkSold4"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.Button"
+                            app:cornerRadius="12dp"
+                            android:backgroundTint="#E53935"
+                            android:text="Mark Sold"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content" />
+
+                        <!-- 🟢 Edit Details Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEdit4"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.Button"
+                            app:cornerRadius="12dp"
+                            android:backgroundTint="#0D9488"
+                            android:text="Edit Details"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 🔹 Second Car Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- IMAGE WITH STATUS -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp">
+
+                        <ImageView
+                            android:id="@+id/ivCarImage3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bmw"
+                            android:clipToOutline="true" />
+
+                        <TextView
+                            android:id="@+id/tvCarStatus3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:layout_gravity="top|end"
+                            android:background="@drawable/bg_status_available"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="AVAILABLE"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+
+                    <!-- PRICE -->
+                    <TextView
+                        android:id="@+id/tvCarPrice3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_price"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        android:text="₹45,00,000"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- CAR NAME -->
+                    <TextView
+                        android:id="@+id/tvCarName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:text="bmw X5 2021"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- DETAILS GRID -->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:columnCount="2">
+
+                        <!-- Driven -->
+                        <LinearLayout
+                            style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/km" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Driven"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="45,000 km"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Fuel -->
+                        <LinearLayout
+                            style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/fuel" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Fuel"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Petrol"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Transmission -->
+                        <LinearLayout
+                            style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/transmisson" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Transmission"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Automatic"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Posted -->
+                        <LinearLayout
+                            style="@style/CarDetailBox">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/calender"
+                                app:tint="#0D9488" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Posted"
+                                    android:textSize="12sp"
+                                    android:textColor="#757575" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="5 days ago"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#212121" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </GridLayout>
+
+                    <!-- BUTTONS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <!-- 🔴 Mark Sold Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnMarkSold3"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.Button"
+                            app:cornerRadius="12dp"
+                            android:backgroundTint="#E53935"
+                            android:text="Mark Sold"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content" />
+
+                        <!-- 🟢 Edit Details Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEdit3"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.Button"
+                            app:cornerRadius="12dp"
+                            android:backgroundTint="#0D9488"
+                            android:text="Edit Details"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddCar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <!-- 🔹 First Car Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:strokeColor="#E0E0E0"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@android:color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!-- IMAGE WITH STATUS -->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp">
-
-                    <ImageView
-                        android:id="@+id/ivCarImage4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/benz"
-                        android:clipToOutline="true" />
-
-                    <TextView
-                        android:id="@+id/tvCarStatus4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="12dp"
-                        android:layout_gravity="top|end"
-                        android:background="@drawable/bg_status_available"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="AVAILABLE"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </FrameLayout>
-
-                <!-- PRICE -->
-                <TextView
-                    android:id="@+id/tvCarPrice4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_price"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="₹55,00,000"
-                    android:textColor="@android:color/holo_orange_light"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- CAR NAME -->
-                <TextView
-                    android:id="@+id/tvCarName4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:text="benz C class 2021"
-                    android:textColor="#212121"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- DETAILS GRID -->
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:columnCount="2">
-
-                    <!-- Driven -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/km" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Driven"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="60,000 km"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Fuel -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/fuel" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Fuel"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Petrol"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Transmission -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/transmisson" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Transmission"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Automatic"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Posted -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/calender"
-                            app:tint="#0D9488" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Posted"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="5 days ago"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </GridLayout>
-
-                <!-- BUTTONS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <!-- 🔴 Mark Sold Button -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnMarkSold4"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        style="@style/Widget.MaterialComponents.Button"
-                        app:cornerRadius="12dp"
-                        android:backgroundTint="#E53935"
-                        android:text="Mark Sold"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="12dp"
-                        android:layout_height="wrap_content" />
-
-                    <!-- 🟢 Edit Details Button -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnEdit4"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        style="@style/Widget.MaterialComponents.Button"
-                        app:cornerRadius="12dp"
-                        android:backgroundTint="#0D9488"
-                        android:text="Edit Details"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- 🔹 Second Car Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:strokeColor="#E0E0E0"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@android:color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!-- IMAGE WITH STATUS -->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp">
-
-                    <ImageView
-                        android:id="@+id/ivCarImage3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bmw"
-                        android:clipToOutline="true" />
-
-                    <TextView
-                        android:id="@+id/tvCarStatus3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="12dp"
-                        android:layout_gravity="top|end"
-                        android:background="@drawable/bg_status_available"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="AVAILABLE"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </FrameLayout>
-
-                <!-- PRICE -->
-                <TextView
-                    android:id="@+id/tvCarPrice3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_price"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="₹45,00,000"
-                    android:textColor="@android:color/holo_orange_light"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- CAR NAME -->
-                <TextView
-                    android:id="@+id/tvCarName3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:text="bmw X5 2021"
-                    android:textColor="#212121"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- DETAILS GRID -->
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:columnCount="2">
-
-                    <!-- Driven -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/km" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Driven"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="45,000 km"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Fuel -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/fuel" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Fuel"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Petrol"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Transmission -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/transmisson" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Transmission"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Automatic"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Posted -->
-                    <LinearLayout
-                        style="@style/CarDetailBox">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/calender"
-                            app:tint="#0D9488" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Posted"
-                                android:textSize="12sp"
-                                android:textColor="#757575" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="5 days ago"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#212121" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </GridLayout>
-
-                <!-- BUTTONS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <!-- 🔴 Mark Sold Button -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnMarkSold3"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        style="@style/Widget.MaterialComponents.Button"
-                        app:cornerRadius="12dp"
-                        android:backgroundTint="#E53935"
-                        android:text="Mark Sold"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="12dp"
-                        android:layout_height="wrap_content" />
-
-                    <!-- 🟢 Edit Details Button -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnEdit3"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        style="@style/Widget.MaterialComponents.Button"
-                        app:cornerRadius="12dp"
-                        android:backgroundTint="#0D9488"
-                        android:text="Edit Details"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-</ScrollView>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/elava"
+        android:contentDescription="Add new car"
+        app:backgroundTint="@color/white"
+        app:tint="@android:color/black"
+        app:elevation="6dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

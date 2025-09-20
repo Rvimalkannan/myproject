@@ -16,17 +16,15 @@ public class adapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0: return new All();
-            case 1: return new Available();
-            case 2: return new Sold();
+//            case 0: return new All();
+            case 0: return new Available();
+            case 1: return new Sold();
             default: return new Fragment();
         }
     }
 
     @Override
     public int getItemCount() {
-        return 3; // total tabs
+        return 2; // total tabs
     }
-
-
 }

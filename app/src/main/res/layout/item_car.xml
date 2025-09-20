@@ -26,22 +26,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/bmw" />
 
-            <!-- Price badge -->
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:background="#FFFFFF"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="₹75,00,000"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#F59E0B"
-                android:layout_gravity="top|end" />
+            <!-- Removed top price badge -->
         </FrameLayout>
 
         <!-- Car details -->
@@ -51,14 +36,32 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvCarName"
+            <!-- Car Name (left) and Price (right) -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BMW X5"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#0F172A" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvCarName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="BMW X5"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F172A" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹75,00,000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#F59E0B" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvCarModel"
@@ -76,7 +79,6 @@
                 android:layout_marginBottom="12dp"
                 android:background="#F1F5F9" />
 
-            <!-- Info row -->
             <!-- Info row -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,7 +107,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/calender"
                             app:tint="#344054"
-                            android:layout_marginEnd="6dp"/>
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:id="@+id/tvYear"
@@ -113,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:text="2023"
                             android:textSize="13sp"
-                            android:textColor="#344054"/>
+                            android:textColor="#344054" />
                     </LinearLayout>
 
                     <!-- Fuel -->
@@ -127,8 +129,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/fuel"
-
-                            android:layout_marginEnd="6dp"/>
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:id="@+id/tvFuel"
@@ -136,7 +137,7 @@
                             android:layout_height="wrap_content"
                             android:text="Petrol"
                             android:textSize="13sp"
-                            android:textColor="#344054"/>
+                            android:textColor="#344054" />
                     </LinearLayout>
 
                     <!-- Location -->
@@ -149,7 +150,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/loc1"
-                            android:layout_marginEnd="6dp"/>
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:id="@+id/tvLocation"
@@ -157,7 +158,7 @@
                             android:layout_height="wrap_content"
                             android:text="Mumbai"
                             android:textSize="13sp"
-                            android:textColor="#344054"/>
+                            android:textColor="#344054" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -180,7 +181,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/km"
-                            android:layout_marginEnd="6dp"/>
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:id="@+id/tvKm"
@@ -188,7 +189,7 @@
                             android:layout_height="wrap_content"
                             android:text="12,500 km"
                             android:textSize="13sp"
-                            android:textColor="#344054"/>
+                            android:textColor="#344054" />
                     </LinearLayout>
 
                     <!-- Owner -->
@@ -201,7 +202,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/owner"
-                            android:layout_marginEnd="6dp"/>
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:id="@+id/tvOwner"
@@ -209,11 +210,10 @@
                             android:layout_height="wrap_content"
                             android:text="1st Owner"
                             android:textSize="13sp"
-                            android:textColor="#344054"/>
+                            android:textColor="#344054" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
 
             <!-- Button -->
             <Button
@@ -225,8 +225,7 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/rounded_button"
                 app:backgroundTint="#0D9488"
-                android:layout_marginTop="8dp"
-                />
+                android:layout_marginTop="8dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

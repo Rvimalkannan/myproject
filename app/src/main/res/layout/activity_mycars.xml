@@ -3,27 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mycars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:id="@+id/mycars"
     tools:context=".Mycars">
 
-
-
-    <!-- 🔹 Tabs -->
+    <!-- 🔹 TabLayout with background -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="@android:color/white"
-        app:tabSelectedTextColor="#0F0F0F"
-        app:tabTextColor="#10ACD7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints,NotSibling" />
+        android:layout_height="48dp"
+        android:background="#1B2633"
+    app:tabIndicatorHeight="2dp"
+    app:tabIndicatorColor="#F59E0B"
+    app:tabBackground="@drawable/tab_selector"
+    app:tabTextColor="@color/tab_text_selector"
+    app:tabMode="fixed"
+    app:tabGravity="fill"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 🔹 ViewPager2 -->
+    <!-- 🔹 ViewPager2 / Content -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="0dp"
@@ -31,9 +32,6 @@
         app:layout_constraintTop_toBottomOf="@id/tabLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
