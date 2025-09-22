@@ -25,6 +25,11 @@ public class APiCarAdapter extends RecyclerView.Adapter<APiCarAdapter.CarViewHol
         this.carList = carList;
     }
 
+    // Add this missing method
+    public void updateCarList(List<ApiAllCar> newCarList) {
+        this.carList = newCarList;
+    }
+
     @NonNull
     @Override
     public CarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,8 +38,6 @@ public class APiCarAdapter extends RecyclerView.Adapter<APiCarAdapter.CarViewHol
                 .inflate(R.layout.item_car, parent, false);
         return new CarViewHolder(view);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder holder, int position) {
@@ -70,17 +73,13 @@ public class APiCarAdapter extends RecyclerView.Adapter<APiCarAdapter.CarViewHol
 
     @Override
     public int getItemCount() {
-        return carList.size();
+        return carList != null ? carList.size() : 0;
     }
-
-
 
     static class CarViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCar;
         TextView tvPrice, tvCarName, tvCarModel, tvYear, tvFuel, tvLocation, tvKm, tvOwner;
         Button btnViewDetails;
-
-
 
         CarViewHolder(View itemView) {
             super(itemView);
@@ -99,7 +98,6 @@ public class APiCarAdapter extends RecyclerView.Adapter<APiCarAdapter.CarViewHol
         }
     }
 
-
     private void openCarDetails(String name, String model, String price, String year,
                                 String km, String fuel, String owner, String location) {
         Intent intent = new Intent(context, cardetails.class);
@@ -115,5 +113,4 @@ public class APiCarAdapter extends RecyclerView.Adapter<APiCarAdapter.CarViewHol
         // Use context to start Activity
         context.startActivity(intent);
     }
-
 }

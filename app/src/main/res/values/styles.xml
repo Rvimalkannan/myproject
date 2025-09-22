@@ -43,4 +43,14 @@
         <item name="android:background">@drawable/bg_detail_box</item>
     </style>
 
-</resources>
+    <style name="FilterButtonStyle">
+        <item name="android:background">@drawable/filter_button_selector</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:textColor">@color/filter_button_text_selector</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    </resources>

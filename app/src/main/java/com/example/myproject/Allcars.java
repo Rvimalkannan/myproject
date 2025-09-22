@@ -1,5 +1,6 @@
 package com.example.myproject;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,10 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -39,21 +40,31 @@ public class Allcars extends Fragment {
     ImageView btnFilter;
     DrawerLayout drawerLayout;
 
-    // Show Variant Toggle Buttons
-    ToggleButton btnSedan, btnSuv, btnHatchback, btnLuxury;
+    // Show Variant Filter Buttons
+    Button btnSedan, btnSUV, btnHatchback, btnLuxury;
 
-    // Fuel Type Toggle Buttons
-    ToggleButton btnPetrol, btnDiesel, btnCng, btnElectric;
+    // Fuel Type Filter Buttons
+    Button btnPetrol, btnDiesel, btnCNG, btnElectric;
 
-    // Transmission Toggle Buttons
-    ToggleButton btnManual, btnAutomatic;
+    // Transmission Filter Buttons
+    Button btnManual, btnAutomatic;
 
-    // Number of Owners Toggle Buttons (Fixed to match XML)
-    ToggleButton btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner;
+    // Number of Owners Filter Buttons
+    Button btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner;
 
     Button btnReset;
     Button btnApply;
     TextView tvCancel;
+
+    // Track button states
+    private boolean isSelectedSedan = false, isSelectedSUV = false, isSelectedHatchback = false, isSelectedLuxury = false;
+    private boolean isSelectedPetrol = false, isSelectedDiesel = false, isSelectedCNG = false, isSelectedElectric = false;
+    private boolean isSelectedManual = false, isSelectedAutomatic = false;
+    private boolean isSelectedFirstOwner = false, isSelectedSecondOwner = false, isSelectedThirdOwner = false, isSelectedFourthOwner = false;
+
+    // Colors for text states
+    private int selectedTextColor;
+    private int normalTextColor;
 
     @Nullable
     @Override
@@ -62,6 +73,10 @@ public class Allcars extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_allcars, container, false);
+
+        // Initialize colors
+        selectedTextColor = ContextCompat.getColor(getContext(), android.R.color.holo_green_dark);
+        normalTextColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
 
         // Initialize main views
         etSearch = view.findViewById(R.id.etSearch);
@@ -87,23 +102,23 @@ public class Allcars extends Fragment {
     }
 
     private void initializeFilterViews(View view) {
-        // Show Variant toggles
+        // Show Variant buttons
         btnSedan = view.findViewById(R.id.btnSedan);
-        btnSuv = view.findViewById(R.id.btnSuv);
+        btnSUV = view.findViewById(R.id.btnSUV);
         btnHatchback = view.findViewById(R.id.btnHatchback);
         btnLuxury = view.findViewById(R.id.btnLuxury);
 
-        // Fuel Type toggles
+        // Fuel Type buttons
         btnPetrol = view.findViewById(R.id.btnPetrol);
         btnDiesel = view.findViewById(R.id.btnDiesel);
-        btnCng = view.findViewById(R.id.btnCng);
+        btnCNG = view.findViewById(R.id.btnCNG);
         btnElectric = view.findViewById(R.id.btnElectric);
 
-        // Transmission toggles
+        // Transmission buttons
         btnManual = view.findViewById(R.id.btnManual);
         btnAutomatic = view.findViewById(R.id.btnAutomatic);
 
-        // Number of Owners toggles (Now matching XML)
+        // Number of Owners buttons
         btnFirstOwner = view.findViewById(R.id.btnFirstOwner);
         btnSecondOwner = view.findViewById(R.id.btnSecondOwner);
         btnThirdOwner = view.findViewById(R.id.btnThirdOwner);
@@ -111,28 +126,111 @@ public class Allcars extends Fragment {
 
         // Action buttons
         btnReset = view.findViewById(R.id.btnReset);
-        btnApply = view.findViewById(R.id.btnApply);
+        btnApply = view.findViewById(R.id.btnApplyFilter);
         tvCancel = view.findViewById(R.id.tvCancel);
 
-        // Make Number of Owners buttons single-select
-        setupOwnerButtons();
+        // Remove background tint and initialize button colors
+        removeBackgroundTintAndInitialize();
+
+        // Setup filter button listeners
+        setupFilterButtonListeners();
     }
 
-    private void setupOwnerButtons() {
-        final ToggleButton[] ownerButtons = {btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner};
+    private void removeBackgroundTintAndInitialize() {
+        // All filter buttons array
+        Button[] allFilterButtons = {
+                btnSedan, btnSUV, btnHatchback, btnLuxury,
+                btnPetrol, btnDiesel, btnCNG, btnElectric,
+                btnManual, btnAutomatic,
+                btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner
+        };
 
-        for (final ToggleButton button : ownerButtons) {
-            button.setOnClickListener(v -> {
-                // If the button is being turned on
-                if (button.isChecked()) {
-                    // Uncheck all other buttons
-                    for (ToggleButton b : ownerButtons) {
-                        if (b != button) {
-                            b.setChecked(false);
-                        }
-                    }
-                }
-            });
+        // Remove background tint and set normal text color for all filter buttons
+        for (Button button : allFilterButtons) {
+            // Remove the violet/purple background tint
+            button.setBackgroundTintList(null);
+
+            // Set normal text color
+            button.setTextColor(normalTextColor);
+        }
+    }
+
+    private void setupFilterButtonListeners() {
+        // Show Variant buttons
+        btnSedan.setOnClickListener(v -> toggleButton(btnSedan, "sedan"));
+        btnSUV.setOnClickListener(v -> toggleButton(btnSUV, "suv"));
+        btnHatchback.setOnClickListener(v -> toggleButton(btnHatchback, "hatchback"));
+        btnLuxury.setOnClickListener(v -> toggleButton(btnLuxury, "luxury"));
+
+        // Fuel Type buttons
+        btnPetrol.setOnClickListener(v -> toggleButton(btnPetrol, "petrol"));
+        btnDiesel.setOnClickListener(v -> toggleButton(btnDiesel, "diesel"));
+        btnCNG.setOnClickListener(v -> toggleButton(btnCNG, "cng"));
+        btnElectric.setOnClickListener(v -> toggleButton(btnElectric, "electric"));
+
+        // Transmission buttons
+        btnManual.setOnClickListener(v -> toggleButton(btnManual, "manual"));
+        btnAutomatic.setOnClickListener(v -> toggleButton(btnAutomatic, "automatic"));
+
+        // Number of Owners buttons (single select)
+        btnFirstOwner.setOnClickListener(v -> selectOwnerButton(btnFirstOwner, "first"));
+        btnSecondOwner.setOnClickListener(v -> selectOwnerButton(btnSecondOwner, "second"));
+        btnThirdOwner.setOnClickListener(v -> selectOwnerButton(btnThirdOwner, "third"));
+        btnFourthOwner.setOnClickListener(v -> selectOwnerButton(btnFourthOwner, "fourth"));
+    }
+
+    private void toggleButton(Button button, String type) {
+        boolean isSelected = button.isSelected();
+        button.setSelected(!isSelected);
+
+        // Update text color based on selection state
+        if (!isSelected) {
+            // Button is now selected - set selected color
+            button.setTextColor(selectedTextColor);
+        } else {
+            // Button is now deselected - set normal color
+            button.setTextColor(normalTextColor);
+        }
+
+        // Update state variables
+        switch (type) {
+            case "sedan": isSelectedSedan = !isSelected; break;
+            case "suv": isSelectedSUV = !isSelected; break;
+            case "hatchback": isSelectedHatchback = !isSelected; break;
+            case "luxury": isSelectedLuxury = !isSelected; break;
+            case "petrol": isSelectedPetrol = !isSelected; break;
+            case "diesel": isSelectedDiesel = !isSelected; break;
+            case "cng": isSelectedCNG = !isSelected; break;
+            case "electric": isSelectedElectric = !isSelected; break;
+            case "manual": isSelectedManual = !isSelected; break;
+            case "automatic": isSelectedAutomatic = !isSelected; break;
+        }
+    }
+
+    private void selectOwnerButton(Button selectedButton, String type) {
+        // Reset all owner buttons
+        Button[] ownerButtons = {btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner};
+
+        for (Button button : ownerButtons) {
+            button.setSelected(false);
+            button.setTextColor(normalTextColor);
+        }
+
+        // Reset state variables
+        isSelectedFirstOwner = false;
+        isSelectedSecondOwner = false;
+        isSelectedThirdOwner = false;
+        isSelectedFourthOwner = false;
+
+        // Set selected button and state
+        selectedButton.setSelected(true);
+        selectedButton.setTextColor(selectedTextColor);
+
+        switch (type) {
+            case "first": isSelectedFirstOwner = true; break;
+            case "second": isSelectedSecondOwner = true; break;
+            case "third": isSelectedThirdOwner = true; break;
+            case "fourth": isSelectedFourthOwner = true; break;
         }
     }
 
@@ -162,22 +260,22 @@ public class Allcars extends Fragment {
             searchFilteredList.addAll(carList);
         } else {
             String lowerCaseQuery = query.toLowerCase().trim();
-//            for (ApiAllCar car : carList) {
-//                // Search in car name, brand, model, etc.
-//                if ((car.getName() != null && car.getName().toLowerCase().contains(lowerCaseQuery)) ||
-//                        (car.getBrand() != null && car.getBrand().toLowerCase().contains(lowerCaseQuery)) ||
-//                        (car.getModel() != null && car.getModel().toLowerCase().contains(lowerCaseQuery)) ||
-//                        (car.getVariant() != null && car.getVariant().toLowerCase().contains(lowerCaseQuery))) {
-//                    searchFilteredList.add(car);
-//                }
-//            }
+            for (ApiAllCar car : carList) {
+                // Search in car name, variant, location, fuel type - using correct method names
+                if ((car.getCarName() != null && car.getCarName().toLowerCase().contains(lowerCaseQuery)) ||
+                        (car.getVariant() != null && car.getVariant().toLowerCase().contains(lowerCaseQuery)) ||
+                        (car.getLocation() != null && car.getLocation().toLowerCase().contains(lowerCaseQuery)) ||
+                        (car.getFuelType() != null && car.getFuelType().toLowerCase().contains(lowerCaseQuery))) {
+                    searchFilteredList.add(car);
+                }
+            }
         }
 
         filteredList = searchFilteredList;
-//        if (apiCarAdapter != null) {
-//            apiCarAdapter.updateCarList(filteredList);
-//            apiCarAdapter.notifyDataSetChanged();
-//        }
+        if (apiCarAdapter != null) {
+            apiCarAdapter.updateCarList(filteredList);
+            apiCarAdapter.notifyDataSetChanged();
+        }
     }
 
     private void loadCarsFromAPI() {
@@ -232,27 +330,35 @@ public class Allcars extends Fragment {
     }
 
     private void resetAllFilters() {
-        // Reset Show Variant
-        btnSedan.setChecked(false);
-        btnSuv.setChecked(false);
-        btnHatchback.setChecked(false);
-        btnLuxury.setChecked(false);
+        // Get all filter buttons
+        Button[] allFilterButtons = {
+                btnSedan, btnSUV, btnHatchback, btnLuxury,
+                btnPetrol, btnDiesel, btnCNG, btnElectric,
+                btnManual, btnAutomatic,
+                btnFirstOwner, btnSecondOwner, btnThirdOwner, btnFourthOwner
+        };
 
-        // Reset Fuel Type
-        btnPetrol.setChecked(false);
-        btnDiesel.setChecked(false);
-        btnCng.setChecked(false);
-        btnElectric.setChecked(false);
+        // Reset all filter buttons
+        for (Button button : allFilterButtons) {
+            button.setSelected(false);
+            button.setTextColor(normalTextColor);
+        }
 
-        // Reset Transmission
-        btnManual.setChecked(false);
-        btnAutomatic.setChecked(false);
-
-        // Reset Number of Owners
-        btnFirstOwner.setChecked(false);
-        btnSecondOwner.setChecked(false);
-        btnThirdOwner.setChecked(false);
-        btnFourthOwner.setChecked(false);
+        // Reset all state variables
+        isSelectedSedan = false;
+        isSelectedSUV = false;
+        isSelectedHatchback = false;
+        isSelectedLuxury = false;
+        isSelectedPetrol = false;
+        isSelectedDiesel = false;
+        isSelectedCNG = false;
+        isSelectedElectric = false;
+        isSelectedManual = false;
+        isSelectedAutomatic = false;
+        isSelectedFirstOwner = false;
+        isSelectedSecondOwner = false;
+        isSelectedThirdOwner = false;
+        isSelectedFourthOwner = false;
     }
 
     private void applyFilters() {
@@ -262,30 +368,11 @@ public class Allcars extends Fragment {
 
         filteredList.clear();
 
-        // Get filter states
-        boolean sedan = btnSedan.isChecked();
-        boolean suv = btnSuv.isChecked();
-        boolean hatchback = btnHatchback.isChecked();
-        boolean luxury = btnLuxury.isChecked();
-
-        boolean petrol = btnPetrol.isChecked();
-        boolean diesel = btnDiesel.isChecked();
-        boolean cng = btnCng.isChecked();
-        boolean electric = btnElectric.isChecked();
-
-        boolean manual = btnManual.isChecked();
-        boolean automatic = btnAutomatic.isChecked();
-
-        boolean firstOwner = btnFirstOwner.isChecked();
-        boolean secondOwner = btnSecondOwner.isChecked();
-        boolean thirdOwner = btnThirdOwner.isChecked();
-        boolean fourthOwner = btnFourthOwner.isChecked();
-
         // Check if any filters are applied
-        boolean hasVariantFilter = sedan || suv || hatchback || luxury;
-        boolean hasFuelFilter = petrol || diesel || cng || electric;
-        boolean hasTransmissionFilter = manual || automatic;
-        boolean hasOwnerFilter = firstOwner || secondOwner || thirdOwner || fourthOwner;
+        boolean hasVariantFilter = isSelectedSedan || isSelectedSUV || isSelectedHatchback || isSelectedLuxury;
+        boolean hasFuelFilter = isSelectedPetrol || isSelectedDiesel || isSelectedCNG || isSelectedElectric;
+        boolean hasTransmissionFilter = isSelectedManual || isSelectedAutomatic;
+        boolean hasOwnerFilter = isSelectedFirstOwner || isSelectedSecondOwner || isSelectedThirdOwner || isSelectedFourthOwner;
 
         // If no filters applied, show all cars
         if (!hasVariantFilter && !hasFuelFilter && !hasTransmissionFilter && !hasOwnerFilter) {
@@ -299,10 +386,10 @@ public class Allcars extends Fragment {
                 if (hasVariantFilter) {
                     String variant = car.getVariant();
                     boolean variantMatch = false;
-                    if (sedan && variant != null && variant.toLowerCase().contains("sedan")) variantMatch = true;
-                    if (suv && variant != null && variant.toLowerCase().contains("suv")) variantMatch = true;
-                    if (hatchback && variant != null && variant.toLowerCase().contains("hatchback")) variantMatch = true;
-                    if (luxury && variant != null && variant.toLowerCase().contains("luxury")) variantMatch = true;
+                    if (isSelectedSedan && variant != null && variant.toLowerCase().contains("sedan")) variantMatch = true;
+                    if (isSelectedSUV && variant != null && variant.toLowerCase().contains("suv")) variantMatch = true;
+                    if (isSelectedHatchback && variant != null && variant.toLowerCase().contains("hatchback")) variantMatch = true;
+                    if (isSelectedLuxury && variant != null && variant.toLowerCase().contains("luxury")) variantMatch = true;
                     if (!variantMatch) matchesFilter = false;
                 }
 
@@ -310,10 +397,10 @@ public class Allcars extends Fragment {
                 if (hasFuelFilter && matchesFilter) {
                     String fuel = car.getFuelType();
                     boolean fuelMatch = false;
-                    if (petrol && fuel != null && fuel.toLowerCase().contains("petrol")) fuelMatch = true;
-                    if (diesel && fuel != null && fuel.toLowerCase().contains("diesel")) fuelMatch = true;
-                    if (cng && fuel != null && fuel.toLowerCase().contains("cng")) fuelMatch = true;
-                    if (electric && fuel != null && fuel.toLowerCase().contains("electric")) fuelMatch = true;
+                    if (isSelectedPetrol && fuel != null && fuel.toLowerCase().contains("petrol")) fuelMatch = true;
+                    if (isSelectedDiesel && fuel != null && fuel.toLowerCase().contains("diesel")) fuelMatch = true;
+                    if (isSelectedCNG && fuel != null && fuel.toLowerCase().contains("cng")) fuelMatch = true;
+                    if (isSelectedElectric && fuel != null && fuel.toLowerCase().contains("electric")) fuelMatch = true;
                     if (!fuelMatch) matchesFilter = false;
                 }
 
@@ -321,22 +408,21 @@ public class Allcars extends Fragment {
                 if (hasTransmissionFilter && matchesFilter) {
                     String transmission = car.getTransmission();
                     boolean transmissionMatch = false;
-                    if (manual && transmission != null && transmission.toLowerCase().contains("manual")) transmissionMatch = true;
-                    if (automatic && transmission != null && transmission.toLowerCase().contains("automatic")) transmissionMatch = true;
+                    if (isSelectedManual && transmission != null && transmission.toLowerCase().contains("manual")) transmissionMatch = true;
+                    if (isSelectedAutomatic && transmission != null && transmission.toLowerCase().contains("automatic")) transmissionMatch = true;
                     if (!transmissionMatch) matchesFilter = false;
                 }
 
-                // Check owner filter
-//                if (hasOwnerFilter && matchesFilter) {
-//                    // Use the correct method name based on your ApiAllCar class
-//                    String owner = car.getOwnerCount(); // Change this to match your actual method
-//                    boolean ownerMatch = false;
-//                    if (firstOwner && owner != null && (owner.contains("1") || owner.toLowerCase().contains("first"))) ownerMatch = true;
-//                    if (secondOwner && owner != null && (owner.contains("2") || owner.toLowerCase().contains("second"))) ownerMatch = true;
-//                    if (thirdOwner && owner != null && (owner.contains("3") || owner.toLowerCase().contains("third"))) ownerMatch = true;
-//                    if (fourthOwner && owner != null && (owner.contains("4") || owner.toLowerCase().contains("fourth") || owner.contains("+"))) ownerMatch = true;
-//                    if (!ownerMatch) matchesFilter = false;
-//                }
+                // Check owner filter - using correct method name
+                if (hasOwnerFilter && matchesFilter) {
+                    String owner = car.getNoOfOwners(); // Using correct method name
+                    boolean ownerMatch = false;
+                    if (isSelectedFirstOwner && owner != null && (owner.contains("1") || owner.toLowerCase().contains("first"))) ownerMatch = true;
+                    if (isSelectedSecondOwner && owner != null && (owner.contains("2") || owner.toLowerCase().contains("second"))) ownerMatch = true;
+                    if (isSelectedThirdOwner && owner != null && (owner.contains("3") || owner.toLowerCase().contains("third"))) ownerMatch = true;
+                    if (isSelectedFourthOwner && owner != null && (owner.contains("4") || owner.toLowerCase().contains("fourth") || owner.contains("+"))) ownerMatch = true;
+                    if (!ownerMatch) matchesFilter = false;
+                }
 
                 if (matchesFilter) {
                     filteredList.add(car);
@@ -345,10 +431,10 @@ public class Allcars extends Fragment {
         }
 
         // Update adapter
-//        if (apiCarAdapter != null) {
-//            apiCarAdapter.updateCarList(filteredList);
-//            apiCarAdapter.notifyDataSetChanged();
-//            Log.d("Filter", "Filtered cars: " + filteredList.size() + " out of " + carList.size());
-//        }
+        if (apiCarAdapter != null) {
+            apiCarAdapter.updateCarList(filteredList);
+            apiCarAdapter.notifyDataSetChanged();
+            Log.d("Filter", "Filtered cars: " + filteredList.size() + " out of " + carList.size());
+        }
     }
 }

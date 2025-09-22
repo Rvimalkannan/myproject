@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,13 +24,14 @@ public class stepper2 extends AppCompatActivity {
     private Spinner spinnerYear, spinnerCategory;
     private Button btnPrevious, btnContinue;
     private ProgressBar progressBar;
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stepper2); // make sure this matches your XML filename
+        setContentView(R.layout.activity_stepper2);
 
-        // find views
+        // --- Bind Views ---
         etCarName = findViewById(R.id.etCarName);
         etBrand = findViewById(R.id.etBrand);
         etModel = findViewById(R.id.etModel);
@@ -45,11 +47,15 @@ public class stepper2 extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setProgress(50); // Step 2 of 4
 
+        ivBack = findViewById(R.id.backrow); // you may need to set android:id="@+id/back_arrow" in XML for ImageView
+
         Intent intentImage = getIntent();
         ArrayList<String> selectedImages = intentImage.getStringArrayListExtra("selected_images");
 
+        // --- Back Arrow Click ---
+        ivBack.setOnClickListener(v -> finish()); // finish current activity to go back
 
-        // --- Populate Year spinner dynamically: "Select Year", current year -> 1990 ---
+        // --- Populate Year spinner dynamically ---
         List<String> years = new ArrayList<>();
         years.add("Select Year");
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -61,13 +67,10 @@ public class stepper2 extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, years);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerYear.setAdapter(yearAdapter);
-        spinnerYear.setSelection(0); // default to "Select Year"
+        spinnerYear.setSelection(0);
 
-        // Optional: listen to selection changes (not required)
         spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // position 0 -> "Select Year"
-            }
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
 
@@ -82,7 +85,6 @@ public class stepper2 extends AppCompatActivity {
                 "Truck",
                 "Van"
         };
-
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -90,16 +92,14 @@ public class stepper2 extends AppCompatActivity {
         spinnerCategory.setSelection(0);
 
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // position 0 -> "Select Category"
-            }
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        // Previous button: go back (or implement your own behavior)
-        btnPrevious.setOnClickListener(v -> finish());
+        // --- Previous Button ---
+        btnPrevious.setOnClickListener(v -> finish()); // go back
 
-        // Continue button: validate and navigate to next step
+        // --- Continue Button ---
         btnContinue.setOnClickListener(v -> {
             String carName = etCarName.getText().toString().trim();
             String brand = etBrand.getText().toString().trim();
@@ -109,7 +109,7 @@ public class stepper2 extends AppCompatActivity {
             String year = spinnerYear.getSelectedItem().toString();
             String category = spinnerCategory.getSelectedItem().toString();
 
-            // validation
+            // --- Validation ---
             if (carName.isEmpty() || brand.isEmpty() || model.isEmpty()
                     || price.isEmpty() || location.isEmpty()
                     || year.equals("Select Year") || category.equals("Select Category")) {
@@ -117,7 +117,7 @@ public class stepper2 extends AppCompatActivity {
                 return;
             }
 
-            // pass data to next activity (Stepper3Activity)
+            // --- Pass data to next step ---
             Intent intent = new Intent(stepper2.this, stepper3.class);
             intent.putStringArrayListExtra("selected_images", selectedImages);
             intent.putExtra("carName", carName);

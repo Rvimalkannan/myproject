@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 public class cardetails extends AppCompatActivity {
 
     ViewPager2 viewPager;
-    TextView tvCarName, tvCarModel, tvCarPrice, tvCarYear, tvCarKm, tvCarFuel, tvCarOwner, tvCarLocation;
+    TextView tvCarNameCard, tvCarModelCard, tvCarPrice, tvCarYear, tvCarKm, tvCarFuel, tvCarOwner, tvCarLocation;
     Button btnCallDealer, btnSendRequest;
 
     @Override
@@ -28,10 +30,24 @@ public class cardetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardetails);
 
+        // Setup Toolbar as ActionBar
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+// Enable back button
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+// Handle back button click
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
+
         // Bind Views
         viewPager = findViewById(R.id.viewPager2);
-        tvCarName = findViewById(R.id.tvCarName);
-        tvCarModel = findViewById(R.id.tvCarModel);
+        tvCarNameCard = findViewById(R.id.tvCarNameCard);
+        tvCarModelCard = findViewById(R.id.tvCarModelCard);
         tvCarPrice = findViewById(R.id.tvCarPriceDetails);
         tvCarYear = findViewById(R.id.tvCarYear);
         tvCarKm = findViewById(R.id.tvCarKm);
@@ -52,8 +68,8 @@ public class cardetails extends AppCompatActivity {
         String location = getIntent().getStringExtra("carLocation");
 
         // Set Data
-        tvCarName.setText(name);
-        tvCarModel.setText(model);
+        tvCarNameCard.setText(name);
+        tvCarModelCard.setText(model);
         tvCarPrice.setText(price);
         tvCarYear.setText(year);
         tvCarKm.setText(km);
@@ -79,7 +95,7 @@ public class cardetails extends AppCompatActivity {
             Toast.makeText(this, "📞 Calling Dealer...", Toast.LENGTH_SHORT).show();
         });
 
-        // 📩 Send Request via WhatsApp (Text + optional Image)
+        // 📩 Send Request via WhatsApp (Text + Image)
         btnSendRequest.setOnClickListener(v -> {
             String message = "Hi! I am interested in the following car:\n\n"
                     + "Name: " + name + "\n"
@@ -118,7 +134,5 @@ public class cardetails extends AppCompatActivity {
                 Toast.makeText(this, "WhatsApp not installed or error occurred!", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

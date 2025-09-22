@@ -393,27 +393,39 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
+            android:weightSum="2">
 
-            <Button
+            <!-- Previous Button -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPrevious"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="Previous"
+                style="@style/Widget.MaterialComponents.Button"
+                app:cornerRadius="12dp"
                 android:backgroundTint="#B5AEAE"
+                android:text="Previous"
+                android:textAllCaps="false"
                 android:textColor="#F4F4F4"
+                android:textSize="14sp"
                 android:layout_marginEnd="8dp" />
 
-            <Button
+            <!-- Publish Button -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPublish"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="Publish Car"
-                android:textColor="#FFFFFF"
+                style="@style/Widget.MaterialComponents.Button"
+                app:cornerRadius="12dp"
                 android:backgroundTint="#16A34A"
+                android:text="Publish Car"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
                 android:layout_marginStart="8dp" />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

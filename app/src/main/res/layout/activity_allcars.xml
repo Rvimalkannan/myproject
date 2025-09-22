@@ -88,348 +88,348 @@
     </LinearLayout>
 
     <!-- 🔹 Right-side Filter Drawer -->
-    <LinearLayout
-        android:id="@+id/layoutFilter"
-        android:layout_width="280dp"
+    <ScrollView
+        android:id="@+id/rightDrawer"
+        android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:orientation="vertical"
         android:background="@android:color/white"
-        android:padding="16dp">
+        android:padding="20dp"
+        android:elevation="8dp">
 
-        <ScrollView
-            android:layout_width="320dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header with Close Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Filters"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#1F2937"/>
+
+                <TextView
+                    android:id="@+id/tvCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✕"
+                    android:textSize="18sp"
+                    android:textColor="#6B7280"
+                    android:padding="8dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <!-- Show Variant Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Variant"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:paddingBottom="12dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
 
-                <!-- Header -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp">
+                <Button
+                    android:id="@+id/btnSedan"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="SEDAN"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Filters"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"
-                        android:layout_centerInParent="true" />
-
-                    <TextView
-                        android:id="@+id/tvCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp"
-                        android:padding="8dp"
-                        android:layout_alignParentEnd="true" />
-                </RelativeLayout>
-
-                <!-- Show Variant Section -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Show Variant"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnSedan"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Sedan"
-                            android:textOff="Sedan"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnSuv"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="SUV"
-                            android:textOff="SUV"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnHatchback"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Hatchback"
-                            android:textOff="Hatchback"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnLuxury"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Luxury"
-                            android:textOff="Luxury"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Fuel Type Section -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fuel Type"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnPetrol"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Petrol"
-                            android:textOff="Petrol"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnDiesel"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Diesel"
-                            android:textOff="Diesel"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnCng"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="CNG"
-                            android:textOff="CNG"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnElectric"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Electric"
-                            android:textOff="Electric"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Transmission Section -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Transmission"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ToggleButton
-                        android:id="@+id/btnManual"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:layout_margin="4dp"
-                        android:textOn="Manual"
-                        android:textOff="Manual"
-                        android:textSize="14sp"
-                        android:background="@drawable/toggle_button_selector" />
-
-                    <ToggleButton
-                        android:id="@+id/btnAutomatic"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:layout_margin="4dp"
-                        android:textOn="Automatic"
-                        android:textOff="Automatic"
-                        android:textSize="14sp"
-                        android:background="@drawable/toggle_button_selector" />
-                </LinearLayout>
-
-                <!-- Number of Owners Section -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Owners"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnFirstOwner"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="First"
-                            android:textOff="First"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnSecondOwner"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Second"
-                            android:textOff="Second"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/btnThirdOwner"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Third"
-                            android:textOff="Third"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-
-                        <ToggleButton
-                            android:id="@+id/btnFourthOwner"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            android:textOn="Fourth+"
-                            android:textOff="Fourth+"
-                            android:textSize="14sp"
-                            android:background="@drawable/toggle_button_selector" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Bottom Buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="24dp"
-                    android:weightSum="2">
-
-                    <Button
-                        android:id="@+id/btnReset"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:layout_margin="8dp"
-                        android:text="Reset"
-                        android:textColor="@color/white"
-                        android:background="@drawable/bg_btn_reset"
-                       />
-
-                    <Button
-                        android:id="@+id/btnApply"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:layout_margin="8dp"
-                        android:text="Apply"
-                        android:textColor="@color/white"
-                        android:background="@drawable/bg_btn_reset"
-                 />
-
-                </LinearLayout>
-
+                <Button
+                    android:id="@+id/btnSUV"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="SUV"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="20dp">
 
+                <Button
+                    android:id="@+id/btnHatchback"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="HATCHBACK"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
 
+                <Button
+                    android:id="@+id/btnLuxury"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="LUXURY"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <!-- Fuel Type Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fuel Type"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:paddingBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnPetrol"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="PETROL"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/btnDiesel"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="DIESEL"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/btnCNG"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="CNG"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/btnElectric"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="ELECTRIC"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <!-- Transmission Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transmission"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:paddingBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/btnManual"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="MANUAL"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/btnAutomatic"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="AUTOMATIC"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <!-- Number of Owners Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Owners"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:paddingBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnFirstOwner"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="FIRST"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/btnSecondOwner"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="SECOND"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="30dp">
+
+                <Button
+                    android:id="@+id/btnThirdOwner"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="THIRD"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/btnFourthOwner"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="FOURTH+"
+                    android:textSize="12sp"
+                    android:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <!-- Action Buttons with colored backgrounds -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:background="#FFFFFF">
+
+                <!-- Reset Button with Border -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReset"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    style="@style/Widget.MaterialComponents.Button"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#FFFFFF"
+                    app:strokeColor="#0D9488"
+                    app:strokeWidth="2dp"
+                    android:text="Reset"
+                    android:textAllCaps="false"
+                    android:textColor="#0D9488"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content" />
+
+                <!-- Apply Filter Button (Filled) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnApplyFilter"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    style="@style/Widget.MaterialComponents.Button"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#0D9488"
+                    android:text="Apply"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

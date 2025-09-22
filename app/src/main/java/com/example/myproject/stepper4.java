@@ -9,14 +9,16 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 public class stepper4 extends AppCompatActivity {
 
     // UI Components
     private ImageView backButton, carImage;
-    private TextView carTitle, carPrice, carLocation,carBrand,
+    private TextView carTitle, carBrand, carPrice, carLocation,
             fuelType, transmission, kmsDriven, ownerCount, description;
     private ProgressBar progressBar;
     private Switch featureSwitch;
@@ -28,24 +30,23 @@ public class stepper4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stepper4);
 
-        // Get selected images from intent
+        // Get selected images from previous activity
         selectedImages = getIntent().getStringArrayListExtra("selected_images");
 
-        // Initialize Views
+        // Initialize all views
         initializeViews();
 
-        // Set the first image to carImage if available
+        // Set first image to carImage if available
         if (selectedImages != null && !selectedImages.isEmpty()) {
             try {
                 carImage.setImageURI(Uri.parse(selectedImages.get(0)));
-//                Toast.makeText(this, "Successfully", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
             }
         }
 
-        // Set data from intent
+        // Set car data from intent extras
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             carTitle.setText(extras.getString("carName", ""));
@@ -60,6 +61,7 @@ public class stepper4 extends AppCompatActivity {
             description.setText(extras.getString("description", ""));
         }
 
+        // Setup button and switch click listeners
         setupClickListeners();
     }
 
@@ -82,10 +84,10 @@ public class stepper4 extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
-        // Back button
-        backButton.setOnClickListener(v -> onBackPressed());
+        // Back button: go back to previous activity
+        backButton.setOnClickListener(v -> finish());
 
-        // Switch
+        // Feature switch: show toast when toggled
         featureSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 Toast.makeText(this, "Feature enabled: More visibility!", Toast.LENGTH_SHORT).show();
@@ -94,17 +96,14 @@ public class stepper4 extends AppCompatActivity {
             }
         });
 
-        // Previous button
-        btnPrevious.setOnClickListener(v -> {
-            // Go back to Step 3
-            finish(); // or navigate to stepper3 activity
-        });
+        // Previous button: go back to Step 3
+        btnPrevious.setOnClickListener(v -> finish());
 
-        // Publish button
+        // Publish button: show toast and go to MainActivity
         btnPublish.setOnClickListener(v -> {
             Toast.makeText(this, "Car Published Successfully!", Toast.LENGTH_LONG).show();
 
-            // Example: Navigate to dashboard/home after publishing
+            // Navigate to main dashboard/home after publishing
             Intent intent = new Intent(stepper4.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
