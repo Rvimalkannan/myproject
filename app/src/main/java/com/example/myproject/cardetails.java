@@ -98,14 +98,15 @@ public class cardetails extends AppCompatActivity {
         // 📩 Send Request via WhatsApp (Text + Image)
         btnSendRequest.setOnClickListener(v -> {
             String message = "Hi! I am interested in the following car:\n\n"
-                    + "Name: " + name + "\n"
-                    + "Model: " + model + "\n"
-                    + "Price: " + price + "\n"
-                    + "Year: " + year + "\n"
-                    + "KM Driven: " + km + "\n"
-                    + "Fuel: " + fuel + "\n"
-                    + "Owner: " + owner + "\n"
-                    + "Location: " + location;
+                    + "*Name:* " + name + "\n"
+                    + "*Model:* " + model + "\n"
+                    + "*Price:* " + price + "\n"
+                    + "*Year:* " + year + "\n"
+                    + "*KM Driven:* " + km + "\n"
+                    + "*Fuel:* " + fuel + "\n"
+                    + "*Owner:* " + owner + "\n"
+                    + "*Location:* " + location;
+
 
             try {
                 // Convert drawable to File

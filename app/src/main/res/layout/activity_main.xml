@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,10 +36,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buy . Sale.Rent"
+                android:text="Buy . Sale . Rent"
                 android:textColor="#E0E0E0"
-                android:textSize="14sp"
-                tools:visibility="visible" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Email -->
@@ -73,18 +72,27 @@
             android:textColor="#000000"
             android:textSize="16sp" />
 
-        <!-- Login Button -->
-        <EditText
-            android:id="@+id/editPassword"
+        <!-- Use TextInputLayout for eye icon -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="#37E4E4ED"
-            android:hint="Enter your password"
-            android:inputType="textPassword"
-            android:padding="12dp" />
+            android:layout_marginTop="4dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="password_toggle"
+            android:hint="Enter your password">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Login Button -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
@@ -98,25 +106,40 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <!-- Register Link -->
-        <TextView
-            android:id="@+id/txtRegister"
-            android:layout_width="wrap_content"
+        <!-- Forgot Password + New User -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:orientation="horizontal"
             android:layout_marginTop="20dp"
-            android:text="New User? Request Access"
-            android:textColor="#2196F3"
-            android:textSize="14sp" />
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:id="@+id/txtForgotPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/txtRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="New User? Request Access"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:gravity="end"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-
-
-        <!--Footer -->
+        <!-- Footer -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -124,7 +147,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +163,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
     </LinearLayout>
 
