@@ -42,6 +42,7 @@
         </LinearLayout>
 
         <!-- Email -->
+        <!-- Email -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,16 +52,24 @@
             android:textColor="#000000"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/editEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="#FFFFFFFF"
-            android:hint="Enter your email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp" />
+            android:layout_marginTop="4dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Enter your email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <!-- Password -->
         <TextView
